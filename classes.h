@@ -1,10 +1,11 @@
 #include <unordered_map>
-
+// global market, only make one
 class Market {
     public:
     unordered_map<string, float> market_h;
     Market(){
     market_h["p_grain"] = 4;
+    market_h["p_fruit"] = 1.8;
     market_h["p_fish"] = 4;
     market_h["p_cattle"] = 4;
     market_h["p_tea"] = 5;
@@ -21,6 +22,20 @@ class Market {
         cout << x.first << " " << x.second << endl;
     }
 };
+
+// updates our market objects prices in its array
+Market market_updater(Market m, string rgo_name, float supply, float demand){
+    // compare supply, demand
+    if (demand < supply){
+        m.market_h[rgo_name] -= 0.01; 
+    }
+    else if (demand > supply){
+        m.market_h[rgo_name] += 0.01;
+    }
+    m.market_h[rgo_name] = roundf(m.market_h[rgo_name] * 100) / 100;
+return m;
+}
+
 
 class Farmer {
     public:
