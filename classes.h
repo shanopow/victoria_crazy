@@ -18,6 +18,7 @@ class Market {
     market_h["p_fuel"] = 8;    
     }
     market_printer(unordered_map<string, float> market_h){
+        cout << "Market:" << "\n";
         for (auto x : market_h)
         cout << x.first << " " << x.second << endl;
     }
